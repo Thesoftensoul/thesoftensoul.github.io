@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Soften Soul - Evidence-based healing for grief, self-care, and life transitions. Premium coaching for high-achieving women. Grief-informed healing and transformational wellness.">
+    <title>The Soften Soul | Evidence-Based Healing for Grief, Self-Care & Life Transitions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-blue: #1e3a5f;
+            --vibrant-blue: #2563eb;
+            --warm-brown: #8b6f47;
+            --rich-tan: #c9a66b;
+            --soft-cream: #f5f1e8;
+            --ivory: #fdfbf7;
+            --gold: #d4af37;
+        }
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: #2d2d2d; background: var(--ivory); }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; color: var(--deep-blue); }
+        
+        header { background: var(--soft-cream); box-shadow: 0 2px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+        nav { max-width: 1400px; margin: 0 auto; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--deep-blue); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--deep-blue); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--vibrant-blue); }
+        .nav-cta { background: var(--vibrant-blue); color: white !important; padding: 0.7rem 1.5rem; border-radius: 30px; transition: all 0.3s; }
+        .nav-cta:hover { background: var(--warm-brown); transform: translateY(-2px); }
+        
+        .hero { background: linear-gradient(135deg, var(--deep-blue) 0%, var(--vibrant-blue) 100%); color: white; padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(201, 166, 107, 0.1) 0%, transparent 50%); }
+        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: white; font-weight: 400; }
+        .hero h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; color: white; font-family: 'Inter', sans-serif; }
+        .hero p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.8; }
+        .cta-button { display: inline-block; padding: 1rem 2.5rem; text-decoration: none; border-radius: 30px; font-weight: 600; margin: 0.5rem; transition: all 0.3s; }
+        .cta-primary { background: white; color: var(--deep-blue); }
+        .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .cta-secondary { background: transparent; color: white; border: 2px solid white; }
+        .cta-secondary:hover { background: white; color: var(--deep-blue); }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 5rem 3rem; }
+        .section-title { font-size: 2.8rem; text-align: center; margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.1rem; text-align: center; color: #666; margin-bottom: 3rem; }
+        
+        .about-section { background: var(--soft-cream); }
+        .about-content { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+        .about-image { height: 450px; background: linear-gradient(135deg, var(--rich-tan), var(--warm-brown)); border: 3px dashed var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; font-weight: 600; color: white; }
+        .about-text h2 { font-size: 2.3rem; margin-bottom: 1.5rem; }
+        .about-text p { margin-bottom: 1.3rem; line-height: 1.8; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .service-card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-top: 4px solid var(--vibrant-blue); transition: transform 0.3s; position: relative; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+        .service-image { width: 100%; height: 180px; background: linear-gradient(135deg, var(--vibrant-blue), var(--deep-blue)); border-radius: 10px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.95rem; font-weight: 600; text-align: center; padding: 1rem; }
+        .service-card h3 { font-size: 1.7rem; margin-bottom: 0.5rem; }
+        .service-card .price { color: var(--gold); font-size: 1.3rem; font-weight: 700; margin: 1rem 0; font-family: 'Cormorant Garamond', serif; }
+        .service-features { list-style: none; margin: 1rem 0; }
+        .service-features li { padding: 0.4rem 0 0.4rem 1.5rem; position: relative; }
+        .service-features li::before { content: "✓"; position: absolute; left: 0; color: var(--vibrant-blue); font-weight: bold; }
+        
+        .experience-section { background: linear-gradient(135deg, var(--warm-brown), var(--rich-tan)); color: white; padding: 4rem 3rem; text-align: center; }
+        .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 900px; margin: 2rem auto; }
+        .experience-item h3 { font-size: 2.5rem; color: white; margin-bottom: 0.5rem; }
+        
+        .review-card { background: white; padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border-left: 5px solid var(--vibrant-blue); box-shadow: 0 3px 15px rgba(0,0,0,0.06); }
+        .stars { color: var(--gold); margin-bottom: 0.8rem; }
+        .review-text { font-style: italic; margin-bottom: 1rem; line-height: 1.8; }
+        .review-author { font-weight: 600; color: var(--deep-blue); }
+        
+        .community-section { background: var(--soft-cream); text-align: center; }
+        .community-card { max-width: 700px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        
+        .contact-section { background: linear-gradient(135deg, var(--deep-blue), var(--vibrant-blue)); color: white; padding: 5rem 3rem; text-align: center; }
+        .contact-form { max-width: 650px; margin: 2rem auto; background: white; padding: 2.5rem; border-radius: 15px; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--deep-blue); font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.9rem; border: 2px solid var(--soft-cream); border-radius: 8px; font-family: inherit; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--vibrant-blue); }
+        .submit-button { background: var(--vibrant-blue); color: white; padding: 1rem 2.5rem; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .submit-button:hover { background: var(--warm-brown); transform: translateY(-2px); }
+        
+        footer { background: var(--deep-blue); color: var(--soft-cream); padding: 3rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .footer-section h4 { color: var(--gold); margin-bottom: 1rem; font-size: 1.2rem; }
+        .social-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
+        .social-links a { color: var(--soft-cream); text-decoration: none; font-size: 1.5rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--gold); }
+        .footer-bottom { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .experience-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            nav { padding: 1rem 1.5rem; }
+            .container { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">The Soften Soul</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://linktr.ee/arhealthpromotions" target="_blank" class="nav-cta">Work With Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>The Soften Soul</h1>
+            <h2>Evidence-Based Healing for Grief, Self-Care & Life Transitions</h2>
+            <p>You've achieved everything they said you couldn't. You've climbed higher, worked harder, and carried more than anyone should have to. But somewhere between being the strong one and proving your worth over and over—you lost yourself.</p>
+            <p>If you're exhausted from carrying everyone's burdens, navigating spaces that weren't built for you, and breaking cycles that weren't yours to carry—you're in the right place.</p>
+            <p style="font-weight: 600; font-size: 1.2rem; margin-top: 1.5rem;">Here, you don't have to be strong. You don't have to prove anything. You can finally soften.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#services" class="cta-button cta-primary">Explore Services</a>
+                <a href="https://linktr.ee/arhealthpromotions" target="_blank" class="cta-button cta-secondary">Book Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div>
+                        <div style="font-size: 1.1rem;">YOUR PROFESSIONAL</div>
+                        <div style="font-size: 1.1rem;">HEADSHOT HERE</div>
+                        <div style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.9;">(500x500px recommended)</div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>Meet Amanda: Your Guide Home to Yourself</h2>
+                    <p>With over 20 years in healthcare and transformational wellness, I specialize in supporting high-achieving women who are tired of being the strong one—women who've spent their lives showing up for everyone else while silencing their own needs.</p>
+                    <p>I understand the unique weight of navigating spaces that weren't designed for you, the exhaustion of proving your worth repeatedly, and the pain of carrying intergenerational wounds that were never yours to bear.</p>
+                    <p>My approach combines evidence-based strategies with deep compassion. I hold space for your grief, your anger, your exhaustion, and your truth. Because healing isn't about becoming someone new—it's about reclaiming who you've always been beneath the armor.</p>
+                    <p style="font-weight: 600; color: var(--deep-blue); font-size: 1.1rem;">You deserve more than survival. You deserve to thrive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="services">
+        <h2 class="section-title">How We Work Together</h2>
+        <p class="section-subtitle">Choose the path that honors where you are in your healing journey</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">Premium 1:1 Coaching Image Placeholder</div>
+                <h3>The Self-Care Method™</h3>
+                <p style="font-style: italic; color: var(--warm-brown); margin-bottom: 1rem;">Premium 1:1 Transformational Coaching</p>
+                <div class="price">$3,500 | 12 Weeks</div>
+                
+                <p><strong>For the woman who:</strong></p>
+                <ul class="service-features">
+                    <li>Has achieved external success but feels empty inside</li>
+                    <li>Is exhausted from being "the strong one"</li>
+                    <li>Carries generational expectations and trauma</li>
+                    <li>Works twice as hard but battles imposter syndrome</li>
+                    <li>Is ready to stop proving her worth</li>
+                </ul>
+                
+                <p style="margin-top: 1.2rem;"><strong>You'll gain:</strong></p>
+                <ul class="service-features">
+                    <li>Release the burden of always being strong</li>
+                    <li>Break free from inherited survival patterns</li>
+                    <li>Navigate workplace stress with resilience</li>
+                    <li>Heal compounding grief</li>
+                    <li>Master life-saving self-care</li>
+                    <li>Healing the mother wounds with kindness and compassion</li>
+                </ul>
+                
+                <p style="margin-top: 1.2rem; font-style: italic;">Limited to 5 clients per quarter</p>
+                <a href="https://linktr.ee/arhealthpromotions" target="_blank" class="cta-button cta-primary" style="margin-top: 1.5rem; display: inline-block;">Book Your Spot</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">Group Coaching Image Placeholder</div>
+                <h3>Healing Circle</h3>
+                <p style="font-style: italic; color: var(--warm-brown); margin-bottom: 1rem;">Collective Transformation</p>
+                <div class="price">$1,297 | 8 Weeks</div>
+                
+                <p><strong>For the woman who:</strong></p>
+                <ul class="service-features">
+                    <li>Needs community who truly understand</li>
+                    <li>Wants support along the way</li>
+                    <li>Needs accountability to change</li>
+                    <li>Seeks transformation at accessible investment</li>
+                </ul>
+                
+                <p style="margin-top: 1.2rem;"><strong>Includes:</strong></p>
+                <ul class="service-features">
+                    <li>Weekly group sessions (6-8 women)</li>
+                    <li>Evidence-based healing strategies</li>
+                    <li>Community support from women on similar journeys</li>
+                    <li>Course materials & resources</li>
+                    <li>Private chat for ongoing support</li>
+                </ul>
+                
+                <p style="margin-top: 1.2rem; font-weight: 600;">You don't have to heal alone.</p>
+                <a href="https://linktr.ee/arhealthpromotions" target="_blank" class="cta-button cta-primary" style="margin-top: 1.5rem; display: inline-block;">Join the Circle</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">Corporate Leadership Image Placeholder</div>
+                <h3>Grief-Informed Leadership</h3>
+                <p style="font-style: italic; color: var(--warm-brown); margin-bottom: 1rem;">Organizational Transformation</p>
+                <div class="price">Custom Pricing</div>
+                
+                <p><strong>We address:</strong></p>
+                <ul class="service-features">
+                    <li>Burnout prevention & recognition</li>
+                    <li>Creating psychologically safe spaces</li>
+                    <li>Supporting employees through grief and loss</li>
+                    <li>Building inclusive cultures of care</li>
+                    <li>Leadership development with emotional intelligence</li>
+                    <li>Strengthening team dynamics and engagement</li>
+                </ul>
+                
+                <p style="margin-top: 1.2rem; font-weight: 600;">Healthy teams start with healthy leaders.</p>
+                <a href="#contact" style="display: inline-block; margin-top: 1.5rem; color: var(--deep-blue); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--vibrant-blue); transition: all 0.3s;">Schedule Consultation →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">You're Not Broken, Just Wounded</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">And wounds heal with compassion, awareness, and the right support.</p>
+        
+        <div class="experience-grid">
+            <div class="experience-item">
+                <h3>20+</h3>
+                <p>Years in Healthcare & Transformational Wellness</p>
+            </div>
+            <div class="experience-item">
+                <h3>100%</h3>
+                <p>Evidence-Based Strategies</p>
+            </div>
+            <div class="experience-item">
+                <h3>∞</h3>
+                <p>Compassion for Your Journey</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="testimonials">
+        <h2 class="section-title">Transformation Stories</h2>
+        <p class="section-subtitle">Real healing. Real results. Real women reclaiming themselves.</p>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"After years of neglecting myself for the sake of caring for sick loved ones, and their subsequent deaths, I found myself struggling with my physical and emotional health. Amanda offered distance healing and that was the beginning of my journey to feeling whole again. Amanda has opened my eyes to the importance of self-care and I've experienced many breakthroughs during our sessions. Her knowledge of healthcare and how stress can affect your body is remarkable. Creating a selfcare plan just for me has made an incredible difference in how I handle stress and changed my overall health and well-being."</p>
+            <div class="review-author">— DMCromer</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Amanda is a true healer. Her passion for what she does really shines through, from beginning to end. She took time to understand my needs and struggles before our session, which helped me feel comfortable. I left her sessions feeling relaxed and with a much more positive outlook on the situations I was concerned with before. Her guiding words and overall gentleness created the perfect vehicle for me to reach a state of clarity, lightness, and positivity."</p>
+            <div class="review-author">— K.V.</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Coaching with Amanda has been a rewarding experience. I've grown from an insecure person to confident woman who has found her voice. Amanda has forced me to be completely honest with myself as well as remove my mask and expose my fears (a very difficult thing to do). By forcing me to exposing my fears, Amanda has shown me how I have control over how things affect me. Amanda showed me how I was doing a disservice to myself, how these actions were placing me in denial and that I couldn't possibly know everything about everything; and that making mistakes is a part of the learning process. I would recommend Amanda's services to anyone who is ready and willing change their life."</p>
+            <div class="review-author">— TB</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"I had an amazing experience with Amanda. I went in feeling anxious and uneasy and I came out feeling like a weight had been lifted. During our session, I realized that I had tears coming out of my eyes but it didn't feel sorrowful, it felt cleansing. It was an amazing experience. Can't wait to schedule another session."</p>
+            <div class="review-author">— Tanya J</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"From the minute I spoke to Amanda I knew she was who I needed to go to my experience the first appointment was awesome she gave me so much more than what I paid!! Well worth it a very genuine and knowledgeable and can truly guide you to a clean spirit!!!"</p>
+            <div class="review-author">— D. Anderson</div>
+        </div>
+    </section>
+
+    <section class="community-section">
+        <div class="container">
+            <h2 class="section-title">Join Our Free Community</h2>
+            <div class="community-card">
+                <h3 style="font-size: 1.9rem; color: var(--deep-blue); margin-bottom: 1rem;">How to Heal Yourself Community</h3>
+                <p style="margin-bottom: 1.5rem;">A sacred space for daily support, resources, and connection. Currently <strong>free</strong> to join.</p>
+                
+                <div style="text-align: left; max-width: 500px; margin: 1.5rem auto;">
+                    <p style="margin-bottom: 0.8rem;"><strong>Your sanctuary for:</strong></p>
+                    <ul style="line-height: 2;">
+                        <li>Community support and connection</li>
+                        <li>Daily encouragement and resources</li>
+                        <li>Live workshops and events</li>
+                        <li>A space where you can finally exhale</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 1.5rem; margin-bottom: 0.5rem;"><strong>Premium Courses Coming Soon:</strong></p>
+                <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Breaking Intergenerational Trauma Cycles • From Burnout to Balance • Navigating Grief While Life Keeps Moving • Reclaiming Your Voice & Your Power</p>
+                
+                <a href="https://www.skool.com/how-to-heal-yourself-9420" target="_blank" class="cta-button cta-primary">Join Free Community</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: white;">You've Carried Enough</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">It's time to come home to yourself.</p>
+        <p style="max-width: 700px; margin: 0 auto 2rem; opacity: 0.95;">You don't need another productivity hack or surface-level self-care tip. You need deep, evidence-based healing that honors your lived experience and helps you reclaim the life you deserve.</p>
+        
+        <div class="contact-form">
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New contact from The Soften Soul">
+                <button type="submit" class="submit-button">Send Message</button>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Note: Once you have Google Workspace, we'll replace this with Google Forms</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>The Soften Soul</h4>
+                <p>Evidence-based healing for grief, self-care, and life transitions. Where high-achieving women come to finally soften.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <p>Premium 1:1 Coaching<br>Healing Circle (Group)<br>Grief-Informed Leadership<br>Free Community</p>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/grief_informedhealing" target="_blank" title="Instagram">📷</a>
+                    <a href="https://www.tiktok.com/@griefinformedhealing" target="_blank" title="TikTok">🎵</a>
+                    <a href="https://www.linkedin.com/in/amanda-robinson-155257249" target="_blank" title="LinkedIn">💼</a>
+                    <a href="https://linktr.ee/arhealthpromotions" target="_blank" title="Linktree">🔗</a>
+                </div>
+                <p style="margin-top: 1rem;">Follow @Grief_informedHealing on Instagram & TikTok for daily healing insights</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Soften Soul. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
