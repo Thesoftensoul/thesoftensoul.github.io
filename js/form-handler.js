@@ -113,7 +113,13 @@ async function submitIntakeForm(formData, form) {
     lastSubmissionTime = Date.now();
 
     // Show success and redirect
-    showSuccessAndRedirect();
+   console.log('Submission complete!');
+
+    // Update rate limit
+    lastSubmissionTime = Date.now();
+
+    // Show thank you message
+    showThankYou();
 
   } catch (error) {
     console.error('Submission error:', error);
