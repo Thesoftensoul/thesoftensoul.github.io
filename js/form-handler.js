@@ -297,6 +297,12 @@ function showMessage(type, message) {
 }
 
 function showIntakeSuccess() {
+  // Simple alert with calendar link
+  alert('✅ Thank you! Your intake form has been submitted.\n\nClick OK to schedule your complimentary 15-minute discovery call.');
+  
+  // Redirect to calendar booking page
+  window.location.href = 'https://calendar.app.google/CUCV2TQ1JRUPZQ4v9';
+}
   console.log('showIntakeSuccess called');
   
   // Hide the form
