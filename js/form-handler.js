@@ -298,19 +298,29 @@ function showMessage(type, message) {
 }
 
 function showIntakeSuccess() {
+  console.log('showIntakeSuccess called');
+  
   // Hide the form
   const formCard = document.querySelector('.form-card');
   const successMessage = document.getElementById('successMessage');
+  
+  console.log('formCard:', formCard);
+  console.log('successMessage:', successMessage);
   
   if (formCard && successMessage) {
     formCard.style.display = 'none';
     successMessage.style.display = 'block';
     
-    // Scroll to success message
-    successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Then scroll to success message
+    setTimeout(() => {
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
   } else {
-    // Fallback to regular message
-    showMessage('success', 'Thank you for completing the intake form! Please check your email for next steps to schedule your complimentary discovery call.');
+    console.error('Could not find form elements');
+    alert('Thank you! Your intake form has been submitted. Please book your discovery call at: https://calendar.app.google/CUCV2TQ1JRUPZQ4v9');
   }
 }
 
