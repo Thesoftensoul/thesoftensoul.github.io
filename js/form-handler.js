@@ -1,107 +1,72 @@
 // ============================================
-// THE SOFTEN SOUL - FORM HANDLER (Client-Side)
-// JavaScript for handling form submissions
-// ============================================
-
-// ============================================
-// CONFIGURATION - YOUR WEB APP URL
+// THE SOFTEN SOUL - FORM HANDLER
+// Simplified and Working Version
 // ============================================
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoE5i7BO51jbUtHUm_FoB2sZCSd5LqTwhABe25JRGwpbBSHTXcT6aazdKBarOLaR6Q/exec';
+const CALENDAR_LINK = 'https://calendar.app.google/CUCV2TQ1JRUPZQ4v9';
 
-// Rate limiting configuration (prevents spam)
-const RATE_LIMIT_MS = 5000; // 5 seconds between submissions
+// Rate limiting
+const RATE_LIMIT_MS = 5000;
 let lastSubmissionTime = 0;
-
-// ============================================
-// CONTACT FORM INITIALIZATION
-// ============================================
-
-function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Check rate limit
-    if (!checkRateLimit()) {
-      showMessage('error', 'Please wait a moment before submitting again.');
-      return;
-    }
-
-    // Check honeypot (spam prevention)
-    if (form.querySelector('[name="honeypot"]').value !== '') {
-      // Silent fail for bots
-      console.log('Spam detected');
-      return;
-    }
-
-    // Get form data
-    const formData = {
-      formType: 'contact',
-      name: form.querySelector('#name').value.trim(),
-      email: form.querySelector('#email').value.trim(),
-      message: form.querySelector('#message').value.trim()
-    };
-
-    // Validate
-    if (!validateContactForm(formData)) {
-      return;
-    }
-
-    // Submit
-    await submitForm(formData, form);
-  });
-}
 
 // ============================================
 // INTAKE FORM INITIALIZATION
 // ============================================
 
 function initIntakeForm() {
+  console.log('Initializing intake form...');
+  
   const form = document.getElementById('intakeForm');
-  if (!form) return;
+  if (!form) {
+    console.error('Intake form not found!');
+    return;
+  }
+
+  console.log('Intake form found, adding submit listener');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    console.log('Form submitted!');
 
-    // Check rate limit
-    if (!checkRateLimit()) {
-      showMessage('error', 'Please wait a moment before submitting again.');
-      return;
-    }
-
-    // Check honeypot (spam prevention)
-    if (form.querySelector('[name="honeypot"]').value !== '') {
-      // Silent fail for bots
+    // Check honeypot
+    const honeypot = form.querySelector('[name="honeypot"]');
+    if (honeypot && honeypot.value !== '') {
       console.log('Spam detected');
       return;
     }
 
     // Check consent
     const consent = form.querySelector('#consent');
-    if (!consent.checked) {
-      showMessage('error', 'Please confirm your consent before submitting.');
+    if (consent && !consent.checked) {
+      alert('Please confirm your consent before submitting.');
+      return;
+    }
+
+    // Check rate limit
+    if (!checkRateLimit()) {
+      alert('Please wait a moment before submitting again.');
       return;
     }
 
     // Get form data
     const formData = {
       formType: 'intake',
-      name: form.querySelector('#name').value.trim(),
-      email: form.querySelector('#email').value.trim(),
-      phone: form.querySelector('#phone').value.trim(),
-      serviceInterest: form.querySelector('#serviceInterest').value,
-      bringsYouHere: form.querySelector('#bringsYouHere').value.trim(),
-      hopeToAchieve: form.querySelector('#hopeToAchieve').value.trim(),
-      biggestChallenge: form.querySelector('#biggestChallenge').value.trim(),
-      startTimeline: form.querySelector('#startTimeline').value,
-      bestTime: form.querySelector('#bestTime').value,
-      contactMethod: form.querySelector('#contactMethod').value,
-      howHeard: form.querySelector('#howHeard').value,
-      notes: form.querySelector('#notes').value.trim()
+      name: getValue(form, '#name'),
+      email: getValue(form, '#email'),
+      phone: getValue(form, '#phone'),
+      serviceInterest: getValue(form, '#serviceInterest'),
+      bringsYouHere: getValue(form, '#bringsYouHere'),
+      hopeToAchieve: getValue(form, '#hopeToAchieve'),
+      biggestChallenge: getValue(form, '#biggestChallenge'),
+      startTimeline: getValue(form, '#startTimeline'),
+      bestTime: getValue(form, '#bestTime'),
+      contactMethod: getValue(form, '#contactMethod'),
+      howHeard: getValue(form, '#howHeard'),
+      notes: getValue(form, '#notes')
     };
+
+    console.log('Form data collected:', formData);
 
     // Validate
     if (!validateIntakeForm(formData)) {
@@ -109,7 +74,7 @@ function initIntakeForm() {
     }
 
     // Submit
-    await submitForm(formData, form);
+    await submitIntakeForm(formData, form);
   });
 }
 
@@ -117,19 +82,23 @@ function initIntakeForm() {
 // FORM SUBMISSION
 // ============================================
 
-async function submitForm(formData, formElement) {
-  const submitBtn = formElement.querySelector('#submitBtn');
+async function submitIntakeForm(formData, form) {
+  const submitBtn = form.querySelector('#submitBtn');
   const btnText = submitBtn.querySelector('.btn-text');
   const btnLoading = submitBtn.querySelector('.btn-loading');
 
   try {
+    console.log('Starting submission...');
+
     // Show loading state
     submitBtn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'flex';
+    if (btnText) btnText.style.display = 'none';
+    if (btnLoading) btnLoading.style.display = 'flex';
 
     // Submit to Google Apps Script
-    const response = await fetch(SCRIPT_URL, {
+    console.log('Sending to:', SCRIPT_URL);
+    
+    await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -138,115 +107,113 @@ async function submitForm(formData, formElement) {
       body: JSON.stringify(formData)
     });
 
-    // With no-cors mode, we assume success if no error was thrown
-    
-  // Show success message
-if (formData.formType === 'intake') {
-  // Show special success message for intake form
-  showIntakeSuccess();
-  // Don't reset intake form - we hide it instead
-} else {
-  showMessage('success', 'Thank you for your message! We\'ll get back to you within 24-48 hours.');
-  // Reset form for contact form only
-  formElement.reset();
-}
-        // Update last submission time
+    console.log('Submission complete!');
+
+    // Update rate limit
     lastSubmissionTime = Date.now();
 
+    // Show success and redirect
+    showSuccessAndRedirect();
+
   } catch (error) {
-    console.error('Form submission error:', error);
-    showMessage('error', 'There was a problem submitting your form. Please try again or email us directly at contact@hello.theselfcaremethod.com');
-  } finally {
-    // Reset button state
+    console.error('Submission error:', error);
+    alert('There was a problem submitting your form. Please try again or email us at contact@hello.theselfcaremethod.com');
+    
+    // Reset button
     submitBtn.disabled = false;
-    btnText.style.display = 'inline';
-    btnLoading.style.display = 'none';
+    if (btnText) btnText.style.display = 'inline';
+    if (btnLoading) btnLoading.style.display = 'none';
   }
 }
 
 // ============================================
-// VALIDATION FUNCTIONS
+// SUCCESS HANDLER
 // ============================================
 
-function validateContactForm(data) {
-  // Validate name
-  if (!data.name || data.name.length < 2) {
-    showMessage('error', 'Please enter your full name.');
-    return false;
-  }
+function showSuccessAndRedirect() {
+  // Hide the form
+  const formCard = document.querySelector('.form-card');
+  const successMessage = document.getElementById('successMessage');
 
-  // Validate email
-  if (!isValidEmail(data.email)) {
-    showMessage('error', 'Please enter a valid email address.');
-    return false;
-  }
+  console.log('Showing success message');
+  console.log('Form card:', formCard);
+  console.log('Success message element:', successMessage);
 
-  // Validate message
-  if (!data.message || data.message.length < 10) {
-    showMessage('error', 'Please enter a message with at least 10 characters.');
-    return false;
+  if (formCard && successMessage) {
+    // Method 1: Hide form and show success message
+    formCard.style.display = 'none';
+    successMessage.style.display = 'block';
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log('Success message displayed');
+    
+    // Don't auto-redirect - let them click the button
+  } else {
+    // Method 2: Alert and redirect if elements not found
+    console.log('Elements not found, using alert method');
+    alert('✅ Thank you! Your intake form has been submitted.\n\nClick OK to schedule your complimentary 15-minute discovery call.');
+    window.location.href = CALENDAR_LINK;
   }
-
-  if (data.message.length > 1000) {
-    showMessage('error', 'Message is too long. Please keep it under 1000 characters.');
-    return false;
-  }
-
-  return true;
 }
+
+// ============================================
+// VALIDATION
+// ============================================
 
 function validateIntakeForm(data) {
-  // Validate name
+  // Name
   if (!data.name || data.name.length < 2) {
-    showMessage('error', 'Please enter your full name.');
+    alert('Please enter your full name.');
     return false;
   }
 
-  // Validate email
+  // Email
   if (!isValidEmail(data.email)) {
-    showMessage('error', 'Please enter a valid email address.');
+    alert('Please enter a valid email address.');
     return false;
   }
 
-  // Validate service interest
+  // Service interest
   if (!data.serviceInterest) {
-    showMessage('error', 'Please select which service you\'re interested in.');
+    alert('Please select which service you\'re interested in.');
     return false;
   }
 
-  // Validate brings you here
+  // Brings you here
   if (!data.bringsYouHere || data.bringsYouHere.length < 10) {
-    showMessage('error', 'Please tell us more about what brings you here (at least 10 characters).');
+    alert('Please tell us more about what brings you here (at least 10 characters).');
     return false;
   }
 
-  // Validate hope to achieve
+  // Hope to achieve
   if (!data.hopeToAchieve || data.hopeToAchieve.length < 10) {
-    showMessage('error', 'Please tell us what you hope to achieve (at least 10 characters).');
+    alert('Please tell us what you hope to achieve (at least 10 characters).');
     return false;
   }
 
-  // Validate biggest challenge
+  // Biggest challenge
   if (!data.biggestChallenge || data.biggestChallenge.length < 10) {
-    showMessage('error', 'Please describe your biggest challenge (at least 10 characters).');
+    alert('Please describe your biggest challenge (at least 10 characters).');
     return false;
   }
 
-  // Validate start timeline
+  // Start timeline
   if (!data.startTimeline) {
-    showMessage('error', 'Please select when you\'d like to start.');
+    alert('Please select when you\'d like to start.');
     return false;
   }
 
-  // Validate best time
+  // Best time
   if (!data.bestTime) {
-    showMessage('error', 'Please select the best time to reach you.');
+    alert('Please select the best time to reach you.');
     return false;
   }
 
-  // Validate contact method
+  // Contact method
   if (!data.contactMethod) {
-    showMessage('error', 'Please select your preferred contact method.');
+    alert('Please select your preferred contact method.');
     return false;
   }
 
@@ -259,60 +226,24 @@ function isValidEmail(email) {
 }
 
 // ============================================
-// RATE LIMITING
+// UTILITY FUNCTIONS
 // ============================================
+
+function getValue(form, selector) {
+  const element = form.querySelector(selector);
+  return element ? element.value.trim() : '';
+}
 
 function checkRateLimit() {
   const now = Date.now();
   const timeSinceLastSubmission = now - lastSubmissionTime;
-  
-  if (timeSinceLastSubmission < RATE_LIMIT_MS) {
-    return false;
-  }
-  
-  return true;
+  return timeSinceLastSubmission >= RATE_LIMIT_MS;
 }
 
 // ============================================
-// MESSAGE DISPLAY
+// PHONE FORMATTING
 // ============================================
 
-function showMessage(type, message) {
-  const messageDiv = document.getElementById('formMessage');
-  if (!messageDiv) return;
-
-  messageDiv.textContent = message;
-  messageDiv.className = `form-message ${type}`;
-  messageDiv.style.display = 'block';
-
-  // Scroll to message
-  messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-  // Hide error messages after 8 seconds
-  if (type === 'error') {
-    setTimeout(() => {
-      messageDiv.style.display = 'none';
-    }, 8000);
-  }
-}
-
-function showIntakeSuccess() {
-  // Simple alert with calendar link
-  alert('✅ Thank you! Your intake form has been submitted.\n\nClick OK to schedule your complimentary 15-minute discovery call.');
-  
-  // Redirect to calendar booking page
-  window.location.href = 'https://calendar.app.google/CUCV2TQ1JRUPZQ4v9';
-}
-  console.log('showIntakeSuccess called');
-
-  }
-}
-
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
-
-// Format phone number as user types (US format)
 function formatPhoneNumber(input) {
   const phoneInput = input.target;
   let value = phoneInput.value.replace(/\D/g, '');
@@ -335,32 +266,18 @@ function formatPhoneNumber(input) {
   phoneInput.value = formatted;
 }
 
-// Add phone formatting to phone fields
+// Add phone formatting when page loads
 document.addEventListener('DOMContentLoaded', () => {
   const phoneInputs = document.querySelectorAll('input[type="tel"]');
   phoneInputs.forEach(input => {
     input.addEventListener('input', formatPhoneNumber);
   });
+  
+  console.log('Phone formatting initialized');
 });
 
 // ============================================
-// ACCESSIBILITY ENHANCEMENTS
+// INITIALIZATION
 // ============================================
 
-// Add aria-live region for screen readers
-document.addEventListener('DOMContentLoaded', () => {
-  const messageDiv = document.getElementById('formMessage');
-  if (messageDiv) {
-    messageDiv.setAttribute('role', 'alert');
-    messageDiv.setAttribute('aria-live', 'polite');
-  }
-});
-
-// ============================================
-// ERROR HANDLING
-// ============================================
-
-window.addEventListener('unhandledrejection', (event) => {
-  console.error('Unhandled promise rejection:', event.reason);
-  showMessage('error', 'An unexpected error occurred. Please try again.');
-});
+console.log('Form handler script loaded');
