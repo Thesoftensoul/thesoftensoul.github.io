@@ -140,18 +140,17 @@ async function submitForm(formData, formElement) {
 
     // With no-cors mode, we assume success if no error was thrown
     
-    // Show success message
-    if (formData.formType === 'intake') {
-      // Show special success message for intake form
-      showIntakeSuccess();
-    } else {
-      showMessage('success', 'Thank you for your message! We\'ll get back to you within 24-48 hours.');
-    }
-    
-    // Reset form
-    formElement.reset();
-    
-    // Update last submission time
+  // Show success message
+if (formData.formType === 'intake') {
+  // Show special success message for intake form
+  showIntakeSuccess();
+  // Don't reset intake form - we hide it instead
+} else {
+  showMessage('success', 'Thank you for your message! We\'ll get back to you within 24-48 hours.');
+  // Reset form for contact form only
+  formElement.reset();
+}
+        // Update last submission time
     lastSubmissionTime = Date.now();
 
   } catch (error) {
