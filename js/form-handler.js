@@ -3,7 +3,7 @@
 // Simple Working Version
 // ============================================
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoE5i7BO51jbUtHUm_FoB2sZCSd5LqTwhABe25JRGwpbBSHTXcT6aazdKBarOLaR6Q/exec'; 
+const SCRIPT_URL = const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyU7XGyzfkRTB34-dOYKLYW4tJozEhzhDaRySnLPILqmVhqzFCRNeKWU7m28JL0-WFU/exec';
 
 // Rate limiting
 const RATE_LIMIT_MS = 5000;
@@ -102,7 +102,7 @@ async function submit(formData, form) {
 
   } catch (error) {
     console.error('Error:', error);
-    alert('There was a problem. Please email us at contact@hello.theselfcaremethod.com');
+    alert('There was a problem. Please email us at contact@thesoftensoul.com');
     
     submitBtn.disabled = false;
     if (btnText) btnText.style.display = 'inline';
