@@ -22,7 +22,16 @@
         
         header { background: var(--soft-cream); box-shadow: 0 2px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
         nav { max-width: 1400px; margin: 0 auto; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--deep-blue); }
+     .logo { 
+  display: flex; 
+  align-items: center; 
+}
+
+.logo-image { 
+  height: 45px; 
+  width: auto; 
+  object-fit: contain; 
+}
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--deep-blue); text-decoration: none; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--vibrant-blue); }
