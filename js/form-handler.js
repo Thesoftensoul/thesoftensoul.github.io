@@ -3,8 +3,7 @@
 // Simple Working Version
 // ============================================
 
-const SCRIPT_URL = const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyU7XGyzfkRTB34-dOYKLYW4tJozEhzhDaRySnLPILqmVhqzFCRNeKWU7m28JL0-WFU/exec';
-
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyU7XGyzfkRTB34-dOYKLYW4tJozEhzhDaRySnLPILqmVhqzFCRNeKWU7m28JL0-WFU/exec';
 // Rate limiting
 const RATE_LIMIT_MS = 5000;
 let lastSubmissionTime = 0;
