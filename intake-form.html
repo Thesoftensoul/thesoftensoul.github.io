@@ -3,217 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Intake Form - The Soften Soul</title>
-    <link rel="stylesheet" href="css/form-styles.css">
+    <title>Intake Form - The Soften Soul</title>
+    <link rel="stylesheet" href="/css/form-styles.css">
 </head>
 <body>
-    <div class="container">
-      <header class="form-header" id="formHeader">
-    <h1>Let's Connect</h1>
-    <p>Welcome! Please take a moment to tell us about yourself so we can better serve you.</p>
-</header>
+    <div class="form-container">
+        <!-- Thank You Message -->
+        <div id="thankYouMessage" class="thank-you-message" style="display: none;">
+            <div class="thank-you-content">
+                <h2>✨ Thank You!</h2>
+                <p>Your intake form has been successfully submitted.</p>
+                <p>We've received your information and will be in touch soon via your preferred contact method.</p>
+                <p style="margin-top: 2rem; font-size: 0.95rem; color: #666;">
+                    If you have any questions in the meantime, feel free to reach out to us at <strong>contact@thesoftensoul.com</strong>
+                </p>
+                <a href="/" class="btn-primary" style="margin-top: 2rem; display: inline-block;">Return Home</a>
+            </div>
+        </div>
 
-<div id="thankYouMessage" style="display: none; text-align: center; padding: 3rem; background: #d1fae5; border-radius: 15px; margin: 2rem 0;">
-    <h1 style="color: #065f46; font-size: 2.5rem; margin-bottom: 1rem;">✅ Thank You!</h1>
-    <p style="color: #047857; font-size: 1.2rem; margin-bottom: 1rem;">Your intake form has been successfully submitted.</p>
-    <p style="color: #047857; font-size: 1.1rem;">We've received your information and will be in touch soon.</p>
-</div>
+        <!-- Form Content -->
+        <div id="formHeader" class="form-header">
+            <h1>Welcome to The Soften Soul</h1>
+            <p>Let's begin your journey to healing and transformation.</p>
+        </div>
 
         <form id="intakeForm" class="form-card">
-            <!-- Honeypot field for spam prevention (hidden from users) -->
-            <input type="text" name="honeypot" class="honeypot" tabindex="-1" autocomplete="off">
-            
-            <div class="form-section">
-                <h3>Personal Information</h3>
-                
-                <div class="form-group">
-                    <label for="name">Full Name <span class="required">*</span></label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        required 
-                        placeholder="Enter your full name"
-                        autocomplete="name"
-                    >
-                </div>
+            <!-- Honeypot field (anti-spam) -->
+            <input type="text" name="honeypot" style="display: none;">
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            required 
-                            placeholder="your.email@example.com"
-                            autocomplete="email"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number <span class="optional">(optional)</span></label>
-                        <input 
-                            type="tel" 
-                            id="phone" 
-                            name="phone" 
-                            placeholder="(555) 123-4567"
-                            autocomplete="tel"
-                        >
-                    </div>
-                </div>
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Your full name" 
+                    required
+                >
             </div>
 
-            <div class="form-section">
-                <h3>Service Interest</h3>
-                
-                <div class="form-group">
-                    <label for="serviceInterest">Which service are you interested in? <span class="required">*</span></label>
-                    <select id="serviceInterest" name="serviceInterest" required>
-                        <option value="">-- Select an option --</option>
-                        <option value="Individual Coaching">Individual Coaching (One-on-one personal support)</option>
-                        <option value="Group Coaching">Group Coaching (Small group sessions)</option>
-                        <option value="Grief Informed Leadership">Grief Informed Leadership (Organizational/workplace support)</option>
-                        <option value="Not sure yet">Not sure yet</option>
-                    </select>
-                </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="your@email.com" 
+                    required
+                >
             </div>
 
-            <div class="form-section">
-                <h3>Tell Us About Yourself</h3>
-                
-                <div class="form-group">
-                    <label for="bringsYouHere">What brings you to The Soften Soul today? <span class="required">*</span></label>
-                    <textarea 
-                        id="bringsYouHere" 
-                        name="bringsYouHere" 
-                        required 
-                        rows="4" 
-                        placeholder="Share what's on your mind and what led you here..."
-                    ></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="hopeToAchieve">What do you hope to achieve? <span class="required">*</span></label>
-                    <textarea 
-                        id="hopeToAchieve" 
-                        name="hopeToAchieve" 
-                        required 
-                        rows="4" 
-                        placeholder="Describe your goals and what success would look like for you..."
-                    ></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="biggestChallenge">What's your biggest challenge right now? <span class="required">*</span></label>
-                    <textarea 
-                        id="biggestChallenge" 
-                        name="biggestChallenge" 
-                        required 
-                        rows="4" 
-                        placeholder="Help us understand what you're struggling with most..."
-                    ></textarea>
-                </div>
+            <!-- Country Code -->
+            <div class="form-group">
+                <label for="countryCode">Country Code *</label>
+                <input 
+                    type="text" 
+                    id="countryCode" 
+                    name="countryCode" 
+                    placeholder="+1 (or +44, +61, etc.)" 
+                    required
+                >
+                <small>Enter your country code (e.g., +1 for USA, +44 for UK)</small>
             </div>
 
-            <div class="form-section">
-                <h3>Scheduling & Preferences</h3>
-                
-                <div class="form-group">
-                    <label for="startTimeline">When would you like to start? <span class="required">*</span></label>
-                    <select id="startTimeline" name="startTimeline" required>
-                        <option value="">-- Select an option --</option>
-                        <option value="This week">This week</option>
-                        <option value="Within the next 2 weeks">Within the next 2 weeks</option>
-                        <option value="This month">This month</option>
-                        <option value="Next month">Next month</option>
-                        <option value="Just exploring options">Just exploring options</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="bestTime">Best time to reach you? <span class="required">*</span></label>
-                        <select id="bestTime" name="bestTime" required>
-                            <option value="">-- Select an option --</option>
-                            <option value="Morning (9am-12pm)">Morning (9am-12pm)</option>
-                            <option value="Afternoon (12pm-5pm)">Afternoon (12pm-5pm)</option>
-                            <option value="Evening (5pm-8pm)">Evening (5pm-8pm)</option>
-                            <option value="Weekends">Weekends</option>
-                            <option value="Flexible">Flexible</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contactMethod">Preferred contact method? <span class="required">*</span></label>
-                        <select id="contactMethod" name="contactMethod" required>
-                            <option value="">-- Select an option --</option>
-                            <option value="Email">Email</option>
-                            <option value="Phone call">Phone call</option>
-                            <option value="Text message">Text message</option>
-                            <option value="Any method works">Any method works</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="howHeard">How did you hear about us?</label>
-                    <select id="howHeard" name="howHeard">
-                        <option value="">-- Select an option --</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="TikTok">TikTok</option>
-                        <option value="LinkedIn">LinkedIn</option>
-                        <option value="Friend/Referral">Friend/Referral</option>
-                        <option value="Google search">Google search</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="notes">Is there anything else you'd like us to know? <span class="optional">(optional)</span></label>
-                    <textarea 
-                        id="notes" 
-                        name="notes" 
-                        rows="4" 
-                        placeholder="Any additional information you'd like to share..."
-                    ></textarea>
-                </div>
+            <!-- Area Code (USA Only) -->
+            <div id="areaCodeContainer" class="form-group" style="display: none;">
+                <label for="areaCode">Area Code *</label>
+                <input 
+                    type="text" 
+                    id="areaCode" 
+                    name="areaCode" 
+                    placeholder="e.g., 813 for Tampa"
+                >
+                <small>Only for USA numbers</small>
             </div>
 
-            <div class="form-consent">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="consent" name="consent" required>
-                    <span>I understand that by submitting this form, my information will be used to contact me about services from The Soften Soul. <span class="required">*</span></span>
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="555-1234 (remaining digits)" 
+                    required
+                >
+            </div>
+
+            <!-- Service Interest -->
+            <div class="form-group">
+                <label for="serviceInterest">Which service interests you? *</label>
+                <select id="serviceInterest" name="serviceInterest" required>
+                    <option value="">-- Please select --</option>
+                    <option value="Individual Coaching">Individual Coaching</option>
+                    <option value="Group Coaching">Group Coaching (Healing Circle)</option>
+                    <option value="Grief-Informed Leadership">Grief-Informed Leadership</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                </select>
+            </div>
+
+            <!-- What brings you here -->
+            <div class="form-group">
+                <label for="bringsYouHere">What brings you to The Soften Soul today? *</label>
+                <textarea 
+                    id="bringsYouHere" 
+                    name="bringsYouHere" 
+                    placeholder="Tell us a bit about what's on your heart..."
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- What do you hope to achieve -->
+            <div class="form-group">
+                <label for="hopeToAchieve">What do you hope to achieve? *</label>
+                <textarea 
+                    id="hopeToAchieve" 
+                    name="hopeToAchieve" 
+                    placeholder="What would transformation look like for you?"
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Biggest challenge -->
+            <div class="form-group">
+                <label for="biggestChallenge">What's your biggest challenge right now? *</label>
+                <textarea 
+                    id="biggestChallenge" 
+                    name="biggestChallenge" 
+                    placeholder="What feels most overwhelming or difficult?"
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- When would you like to start -->
+            <div class="form-group">
+                <label for="startTimeline">When would you like to start? *</label>
+                <select id="startTimeline" name="startTimeline" required>
+                    <option value="">-- Please select --</option>
+                    <option value="This week">This week</option>
+                    <option value="This month">This month</option>
+                    <option value="Next month">Next month</option>
+                    <option value="Flexible">Flexible/TBD</option>
+                </select>
+            </div>
+
+            <!-- Best time to reach you -->
+            <div class="form-group">
+                <label for="bestTime">What's the best time to reach you? *</label>
+                <select id="bestTime" name="bestTime" required>
+                    <option value="">-- Please select --</option>
+                    <option value="Early morning (6am-9am)">Early morning (6am-9am)</option>
+                    <option value="Morning (9am-12pm)">Morning (9am-12pm)</option>
+                    <option value="Afternoon (12pm-5pm)">Afternoon (12pm-5pm)</option>
+                    <option value="Evening (5pm-9pm)">Evening (5pm-9pm)</option>
+                    <option value="Night (9pm+)">Night (9pm+)</option>
+                </select>
+            </div>
+
+            <!-- Preferred contact method -->
+            <div class="form-group">
+                <label for="contactMethod">How would you prefer we contact you? *</label>
+                <select id="contactMethod" name="contactMethod" required>
+                    <option value="">-- Please select --</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone Call">Phone Call</option>
+                    <option value="Text/SMS">Text/SMS</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                </select>
+            </div>
+
+            <!-- Time Zone -->
+            <div class="form-group">
+                <label for="timeZone">What's your time zone? *</label>
+                <select id="timeZone" name="timeZone" required>
+                    <option value="">-- Please select --</option>
+                    <option value="EST (Eastern Standard Time)">EST (Eastern Standard Time)</option>
+                    <option value="CST (Central Standard Time)">CST (Central Standard Time)</option>
+                    <option value="MST (Mountain Standard Time)">MST (Mountain Standard Time)</option>
+                    <option value="PST (Pacific Standard Time)">PST (Pacific Standard Time)</option>
+                    <option value="GMT (Greenwich Mean Time)">GMT (Greenwich Mean Time)</option>
+                    <option value="CET (Central European Time)">CET (Central European Time)</option>
+                    <option value="AEST (Australian Eastern Standard Time)">AEST (Australian Eastern Standard Time)</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- How did you hear about us -->
+            <div class="form-group">
+                <label for="howHeard">How did you hear about The Soften Soul?</label>
+                <select id="howHeard" name="howHeard">
+                    <option value="">-- Please select --</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Google Search">Google Search</option>
+                    <option value="Word of Mouth">Word of Mouth</option>
+                    <option value="Friend/Referral">Friend/Referral</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Additional notes -->
+            <div class="form-group">
+                <label for="notes">Anything else you'd like us to know?</label>
+                <textarea 
+                    id="notes" 
+                    name="notes" 
+                    placeholder="Optional notes..."
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-group checkbox">
+                <input 
+                    type="checkbox" 
+                    id="consent" 
+                    name="consent" 
+                    required
+                >
+                <label for="consent">
+                    I confirm that the information I've provided is accurate and I understand that Amanda will review my intake form and reach out to me within 24-48 hours via my preferred contact method. *
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBtn">
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" class="btn-submit">
                 <span class="btn-text">Submit Intake Form</span>
                 <span class="btn-loading" style="display: none;">
                     <span class="spinner"></span> Submitting...
                 </span>
             </button>
-
-            <div id="formMessage" class="form-message" style="display: none;"></div>
-
-          <div id="successMessage" class="success-next-steps" style="display: none;">
-    <h3>🎉 Thank You!</h3>
-    <p>Your intake form has been received!</p>
-    <p><strong>Next Step:</strong> Schedule your complimentary 15-minute discovery call</p>
-    <a href="https://calendar.app.google/CUCV2TQ1JRUPZQ4v9" target="_blank" style="display: inline-block; background: #1b1f3a; color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; margin: 1.5rem 0;">📅 Book Your Discovery Call Now</a>
-    <p style="font-size: 0.9rem; margin-top: 1rem;">We look forward to connecting with you!</p>
-</div>
         </form>
 
+        <!-- Privacy Note -->
         <div class="privacy-note">
-            <p><strong>Privacy Notice:</strong> Your information is confidential and will only be used to provide you with our services. We do not share your personal information with third parties.</p>
+            <p><small>Your privacy matters. We'll never share your information and will use it only to support your healing journey.</small></p>
         </div>
     </div>
 
-   <script src="js/form-handler.js"></script>
-    <script>
-        // Initialize intake form handler
-        initIntakeForm();
-    </script>
+    <!-- Load form handler script -->
+    <script src="/js/form-handler.js"></script>
 </body>
 </html>
