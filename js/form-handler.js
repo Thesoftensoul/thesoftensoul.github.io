@@ -3,7 +3,7 @@
 // Frontend JavaScript - Intake Form
 // ============================================
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyU7XGyzfkRTB34-dOYKLYW4tJozEhzhDaRySnLPILqmVhqzFCRNeKWU7m28JL0-WFU/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqxwyXgr8H5oWSMzUPy5MWhYZBbO6LPXGZDfxEH2uYnkKBADLYnUyOsT4JeNIrN9SE/exec';
 
 // Rate limiting
 const RATE_LIMIT_MS = 5000;
