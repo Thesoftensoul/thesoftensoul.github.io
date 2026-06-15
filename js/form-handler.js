@@ -1,9 +1,10 @@
 // ============================================
 // THE SOFTEN SOUL - FORM HANDLER
-// Simple Working Version
+// Frontend JavaScript - Intake Form
 // ============================================
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyU7XGyzfkRTB34-dOYKLYW4tJozEhzhDaRySnLPILqmVhqzFCRNeKWU7m28JL0-WFU/exec';
+
 // Rate limiting
 const RATE_LIMIT_MS = 5000;
 let lastSubmissionTime = 0;
@@ -19,6 +20,12 @@ function initIntakeForm() {
   if (!form) {
     console.error('Form not found');
     return;
+  }
+
+  // Add listener for country code changes (show/hide area code)
+  const countryCodeInput = form.querySelector('#countryCode');
+  if (countryCodeInput) {
+    countryCodeInput.addEventListener('input', toggleAreaCodeField);
   }
 
   form.addEventListener('submit', async (e) => {
@@ -48,6 +55,8 @@ function initIntakeForm() {
       formType: 'intake',
       name: getValue(form, '#name'),
       email: getValue(form, '#email'),
+      countryCode: getValue(form, '#countryCode'),
+      areaCode: getValue(form, '#areaCode'),
       phone: getValue(form, '#phone'),
       serviceInterest: getValue(form, '#serviceInterest'),
       bringsYouHere: getValue(form, '#bringsYouHere'),
@@ -56,6 +65,7 @@ function initIntakeForm() {
       startTimeline: getValue(form, '#startTimeline'),
       bestTime: getValue(form, '#bestTime'),
       contactMethod: getValue(form, '#contactMethod'),
+      timeZone: getValue(form, '#timeZone'),
       howHeard: getValue(form, '#howHeard'),
       notes: getValue(form, '#notes')
     };
@@ -68,6 +78,32 @@ function initIntakeForm() {
     // Submit
     await submit(formData, form);
   });
+}
+
+// ============================================
+// TOGGLE AREA CODE FIELD
+// ============================================
+
+function toggleAreaCodeField() {
+  const form = document.getElementById('intakeForm');
+  const countryCodeInput = form.querySelector('#countryCode');
+  const areaCodeContainer = document.getElementById('areaCodeContainer');
+  
+  if (!areaCodeContainer) return;
+  
+  const countryCode = countryCodeInput.value.trim();
+  
+  // Show area code field only if country code is +1 or 1 (USA)
+  if (countryCode === '+1' || countryCode === '1') {
+    areaCodeContainer.style.display = 'block';
+  } else {
+    areaCodeContainer.style.display = 'none';
+    // Clear area code if hidden
+    const areaCodeInput = form.querySelector('#areaCode');
+    if (areaCodeInput) {
+      areaCodeInput.value = '';
+    }
+  }
 }
 
 // ============================================
@@ -148,6 +184,21 @@ function validate(data) {
     return false;
   }
 
+  if (!data.countryCode || data.countryCode.length < 1) {
+    alert('Please enter your country code.');
+    return false;
+  }
+
+  if ((data.countryCode === '+1' || data.countryCode === '1') && !data.areaCode) {
+    alert('Please enter your area code.');
+    return false;
+  }
+
+  if (!data.phone || data.phone.length < 5) {
+    alert('Please enter your phone number.');
+    return false;
+  }
+
   if (!data.serviceInterest) {
     alert('Please select which service you\'re interested in.');
     return false;
@@ -183,6 +234,11 @@ function validate(data) {
     return false;
   }
 
+  if (!data.timeZone) {
+    alert('Please select your time zone.');
+    return false;
+  }
+
   return true;
 }
 
@@ -205,24 +261,9 @@ function checkRateLimit() {
 }
 
 // ============================================
-// PHONE FORMATTING
+// INITIALIZE ON PAGE LOAD
 // ============================================
 
-function formatPhone(input) {
-  let value = input.target.value.replace(/\D/g, '');
-  if (value.length > 10) value = value.slice(0, 10);
-  
-  let formatted = '';
-  if (value.length > 0) formatted = '(' + value.substring(0, 3);
-  if (value.length >= 4) formatted += ') ' + value.substring(3, 6);
-  if (value.length >= 7) formatted += '-' + value.substring(6, 10);
-  
-  input.target.value = formatted;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  const phoneInputs = document.querySelectorAll('input[type="tel"]');
-  phoneInputs.forEach(input => {
-    input.addEventListener('input', formatPhone);
-  });
+  initIntakeForm();
 });
