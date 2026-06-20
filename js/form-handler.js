@@ -58,10 +58,14 @@ function initIntakeForm() {
       countryCode: getValue(form, '#countryCode'),
       areaCode: getValue(form, '#areaCode'),
       phone: getValue(form, '#phone'),
+      steadiness: getValue(form, '#steadiness'),
+      clinicalCare: getValue(form, '#clinicalCare'),
       serviceInterest: getValue(form, '#serviceInterest'),
       bringsYouHere: getValue(form, '#bringsYouHere'),
+      hopingFor: getValue(form, '#hopingFor'),
       hopeToAchieve: getValue(form, '#hopeToAchieve'),
       biggestChallenge: getValue(form, '#biggestChallenge'),
+      griefUnderneath: getValue(form, '#griefUnderneath'),
       startTimeline: getValue(form, '#startTimeline'),
       bestTime: getValue(form, '#bestTime'),
       contactMethod: getValue(form, '#contactMethod'),
@@ -199,6 +203,16 @@ function validate(data) {
     return false;
   }
 
+  if (!data.steadiness) {
+    alert('Please let us know which feels most true for you right now.');
+    return false;
+  }
+
+  if (!data.clinicalCare) {
+    alert('Please answer the question about mental health support.');
+    return false;
+  }
+
   if (!data.serviceInterest) {
     alert('Please select which service you\'re interested in.');
     return false;
@@ -206,6 +220,11 @@ function validate(data) {
 
   if (!data.bringsYouHere || data.bringsYouHere.length < 10) {
     alert('Please tell us more about what brings you here.');
+    return false;
+  }
+
+  if (!data.hopingFor) {
+    alert('Please let us know what you\'re most hoping for.');
     return false;
   }
 
