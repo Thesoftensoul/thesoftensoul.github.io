@@ -87,6 +87,35 @@
                 >
             </div>
 
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 1 — Safety gate (steadiness) -->
+            <!-- Placed early, right after contact info -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="steadiness">So I can support you well, which feels most true for you right now? *</label>
+                <select id="steadiness" name="steadiness" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Steady and ready">I'm steady in daily life and ready to grow from what I've walked through</option>
+                    <option value="Tender but managing">I'm in a tender season, but managing day to day</option>
+                    <option value="Struggling, not steady">I'm struggling right now and not sure I feel steady</option>
+                    <option value="In crisis">I'm in crisis, or at risk of harming myself</option>
+                </select>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 2 — Current/recent clinical care -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="clinicalCare">Are you currently working with — or have you recently needed — a therapist, counselor, or doctor for your mental health? *</label>
+                <select id="clinicalCare" name="clinicalCare" required>
+                    <option value="">-- Select one --</option>
+                    <option value="No, not recently">No, and I haven't needed to recently</option>
+                    <option value="Yes, supported and steady">Yes, I have support in place and I'm steady</option>
+                    <option value="Recent clinical care">Not now, but within the last few years I've needed deeper clinical care</option>
+                    <option value="May need support now">I think I may need that kind of support right now</option>
+                </select>
+            </div>
+
             <!-- Service Interest -->
             <div class="form-group">
                 <label for="serviceInterest">Which service interests you? *</label>
@@ -110,6 +139,21 @@
                 ></textarea>
             </div>
 
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 3 — Hoping for (excavate vs. relate) -->
+            <!-- Placed near "what brings you here" -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="hopingFor">When you imagine this work, what are you most hoping for? *</label>
+                <select id="hopingFor" name="hopingFor" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Move forward">To move forward and build the life and self I want now</option>
+                    <option value="Find peace">To find peace with something I've carried for a long time</option>
+                    <option value="Unpack wounds">To finally go back and unpack wounds I've never processed</option>
+                    <option value="Not sure, something must shift">I'm not sure yet — I just know something needs to shift</option>
+                </select>
+            </div>
+
             <!-- What do you hope to achieve -->
             <div class="form-group">
                 <label for="hopeToAchieve">What do you hope to achieve? *</label>
@@ -129,6 +173,18 @@
                     name="biggestChallenge" 
                     rows="3"
                     required
+                ></textarea>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 4 — Grief/loss invitation (optional) -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="griefUnderneath">Is there a grief, loss, or transition sitting underneath all of this? Anything you'd like me to know is welcome here.</label>
+                <textarea 
+                    id="griefUnderneath" 
+                    name="griefUnderneath" 
+                    rows="3"
                 ></textarea>
             </div>
 
