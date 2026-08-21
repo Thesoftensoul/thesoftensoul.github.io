@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energy Alignment for Leaders | The Soften Soul</title>
+<title>Energy Alignment for Business Success | The Soften Soul</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Montserrat:wght@500;600&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -347,13 +347,13 @@
   <section class="hero">
     <div class="glow"></div>
     <div class="eyebrow">A Free Pilot Session</div>
-    <h1>Energy Alignment for Leaders</h1>
-    <p class="subhead">Before this workshop goes live, I want your feedback.</p>
+    <h1>Energy Alignment for Business Success</h1>
+    <p class="subhead">Lead, decide, communicate, and create from a more aligned state.</p>
   </section>
 
   <section class="body-copy">
-    <p>You lead people all day. Make decisions, hold the room, keep everyone else steady.</p>
-    <p>This 60 minute virtual workshop uses methods I've used with my private professional clients to help you release stress, sharpen focus, and lead from a more grounded place. Leaders who do this work report clearer communication, stronger collaboration, and less burnout on their teams.</p>
+    <p>High performing teams don't run out of ideas. They run out of energy, and it shows up as burnout, disconnection, and decisions made from exhaustion instead of clarity.</p>
+    <p>This 60 minute virtual workshop helps leaders notice what state they're operating from and choose a more grounded, intentional response, in how they lead, decide, and communicate. It draws on methods I've used with my private professional clients.</p>
     <p>I'm inviting a small group to experience this before it launches publicly. I want your honest feedback on what worked and what didn't.</p>
     <p>Spots Are Limited</p>
   </section>
@@ -386,38 +386,10 @@
       </div>
 
       <div class="field">
-        <fieldset>
-          <label>What day and time works best for you? <span class="required">*</span></label>
-          <div class="radio-group" id="timeOptions">
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Weekday morning, 8-9am" required>
-              <span>Weekday morning, 8–9am</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Weekday morning, 9:30-10:30am">
-              <span>Weekday morning, 9:30–10:30am</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Wednesday evening, 6-7pm">
-              <span>Wednesday evening, 6–7pm</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Saturday morning, 10-11am">
-              <span>Saturday morning, 10–11am</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Saturday afternoon, 1-2pm">
-              <span>Saturday afternoon, 1–2pm</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="timeSlot" value="Other" id="otherRadio">
-              <span>Other</span>
-            </label>
-          </div>
-          <div class="other-time" id="otherTimeField">
-            <input type="text" id="otherTimeText" name="otherTimeText" placeholder="Let me know what works for you">
-          </div>
-        </fieldset>
+        <label>Confirmed Session</label>
+        <div class="radio-option" style="cursor: default;">
+          <span style="font-weight: 600;">Thursday, September 10, 2026 &middot; 3:30&ndash;4:30pm ET &middot; Virtual</span>
+        </div>
       </div>
 
       <button type="submit" id="submitBtn">Save My Spot</button>
@@ -427,7 +399,7 @@
 
     <div class="confirm-screen" id="confirmScreen">
       <h2>You're on the list.</h2>
-      <p>I'll follow up soon with your session details.</p>
+      <p>Thursday, September 10, 2026 &middot; 3:30&ndash;4:30pm ET. I'll send the virtual link shortly before we meet.</p>
     </div>
   </section>
 
@@ -440,18 +412,6 @@
   // (same pattern as the existing intake form backend)
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqxwyXgr8H5oWSMzUPy5MWhYZBbO6LPXGZDfxEH2uYnkKBADLYnUyOsT4JeNIrN9SE/exec";
 
-  const otherRadio = document.getElementById('otherRadio');
-  const otherTimeField = document.getElementById('otherTimeField');
-  const timeOptions = document.getElementById('timeOptions');
-
-  timeOptions.addEventListener('change', () => {
-    if (otherRadio.checked) {
-      otherTimeField.classList.add('show');
-    } else {
-      otherTimeField.classList.remove('show');
-    }
-  });
-
   const form = document.getElementById('pilotForm');
   const submitBtn = document.getElementById('submitBtn');
   const statusMsg = document.getElementById('statusMsg');
@@ -461,18 +421,12 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    let timeSlot = form.timeSlot.value;
-    if (timeSlot === 'Other') {
-      const otherText = document.getElementById('otherTimeText').value.trim();
-      timeSlot = otherText ? `Other: ${otherText}` : 'Other';
-    }
-
     const payload = {
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       title: form.title.value.trim(),
       drawn: form.drawn.value.trim(),
-      timeSlot: timeSlot,
+      timeSlot: 'Thursday, September 10, 2026, 3:30-4:30pm ET',
       submittedAt: new Date().toISOString(),
       formType: 'energy-alignment-pilot'
     };
