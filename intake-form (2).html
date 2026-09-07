@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intake Form - The Soften Soul</title>
+    <link rel="stylesheet" href="/css/form-styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <!-- Thank You Message -->
+        <div id="thankYouMessage" class="thank-you-message" style="display: none;">
+            <div class="thank-you-content">
+                <h2 id="thankYouHeading">Thank you for sharing.</h2>
+                <div id="thankYouBody"></div>
+                <p style="margin-top: 2rem; font-size: 0.95rem; color: #666;">
+                    Questions? Reach out at <strong>contact@thesoftensoul.com</strong>
+                </p>
+                <a href="/" class="btn-primary" style="margin-top: 2rem; display: inline-block;">Return Home</a>
+            </div>
+        </div>
+
+        <!-- Form Content -->
+        <div id="formHeader" class="form-header">
+            <h1>Let's Connect</h1>
+            <p>Welcome! The more you share about what you are carrying and the support you are seeking, the more valuable and meaningful the conversation.</p>
+        </div>
+
+        <form id="intakeForm" class="form-card">
+            <!-- Honeypot field (anti-spam) -->
+            <input type="text" name="honeypot" style="display: none;">
+
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required
+                >
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required
+                >
+            </div>
+
+            <!-- Country Code -->
+            <div class="form-group">
+                <label for="countryCode">Country Code *</label>
+                <input 
+                    type="text" 
+                    id="countryCode" 
+                    name="countryCode" 
+                    placeholder="+1" 
+                    required
+                >
+            </div>
+
+            <!-- Area Code (USA Only) -->
+            <div id="areaCodeContainer" class="form-group" style="display: none;">
+                <label for="areaCode">Area Code *</label>
+                <input 
+                    type="text" 
+                    id="areaCode" 
+                    name="areaCode" 
+                    placeholder="813"
+                >
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    required
+                >
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 1 — Safety gate (steadiness) -->
+            <!-- Placed early, right after contact info -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="steadiness">So I can support you well, which feels most true for you right now? *</label>
+                <select id="steadiness" name="steadiness" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Steady and ready">I'm steady in daily life and ready to grow from what I've walked through</option>
+                    <option value="Tender but managing">I'm in a tender season, but managing day to day</option>
+                    <option value="Struggling, not steady">I'm struggling right now and not sure I feel steady</option>
+                    <option value="In crisis">I'm in crisis, or at risk of harming myself</option>
+                </select>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 2 — Current/recent clinical care -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="clinicalCare">Are you currently working with — or have you recently needed — a therapist, counselor, or doctor for your mental health? *</label>
+                <select id="clinicalCare" name="clinicalCare" required>
+                    <option value="">-- Select one --</option>
+                    <option value="No, not recently">No, and I haven't needed to recently</option>
+                    <option value="Yes, supported and steady">Yes, I have support in place and I'm steady</option>
+                    <option value="Recent clinical care">Not now, but within the last few years I've needed deeper clinical care</option>
+                    <option value="May need support now">I think I may need that kind of support right now</option>
+                </select>
+            </div>
+
+            <!-- Service Interest -->
+            <div class="form-group">
+                <label for="serviceInterest">Which service interests you? *</label>
+                <select id="serviceInterest" name="serviceInterest" required>
+                    <option value="">-- Select one --</option>
+                    <option value="The Clarity Conversation">The Clarity Conversation</option>
+                    <option value="Soften Into Self">Soften Into Self</option>
+                    <option value="The Soften Soul Journey">The Soften Soul Journey</option>
+                    <option value="VIP Day or Private Immersion">The VIP Day or Private Immersion</option>
+                    <option value="Grief-Informed Leadership">Grief-Informed Leadership (organizations)</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                </select>
+            </div>
+
+            <!-- What brings you here -->
+            <div class="form-group">
+                <label for="bringsYouHere">What brings you to The Soften Soul today? *</label>
+                <textarea 
+                    id="bringsYouHere" 
+                    name="bringsYouHere" 
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 3 — Hoping for (excavate vs. relate) -->
+            <!-- Placed near "what brings you here" -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="hopingFor">When you imagine this work, what are you most hoping for? *</label>
+                <select id="hopingFor" name="hopingFor" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Move forward">To move forward and build the life and self I want now</option>
+                    <option value="Find peace">To find peace with something I've carried for a long time</option>
+                    <option value="Unpack wounds">To finally go back and unpack wounds I've never processed</option>
+                    <option value="Not sure, something must shift">I'm not sure yet — I just know something needs to shift</option>
+                </select>
+            </div>
+
+            <!-- What do you hope to achieve -->
+            <div class="form-group">
+                <label for="hopeToAchieve">What do you hope to achieve? *</label>
+                <textarea 
+                    id="hopeToAchieve" 
+                    name="hopeToAchieve" 
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Biggest challenge -->
+            <div class="form-group">
+                <label for="biggestChallenge">What's your biggest challenge right now? *</label>
+                <textarea 
+                    id="biggestChallenge" 
+                    name="biggestChallenge" 
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- ============================================= -->
+            <!-- SCREENING QUESTION 4 — Grief/loss invitation (optional) -->
+            <!-- ============================================= -->
+            <div class="form-group">
+                <label for="griefUnderneath">Is there a grief, loss, or transition sitting underneath all of this? Anything you'd like me to know is welcome here.</label>
+                <textarea 
+                    id="griefUnderneath" 
+                    name="griefUnderneath" 
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <!-- When would you like to start -->
+            <div class="form-group">
+                <label for="startTimeline">When would you like to start? *</label>
+                <select id="startTimeline" name="startTimeline" required>
+                    <option value="">-- Select one --</option>
+                    <option value="This week">This week</option>
+                    <option value="This month">This month</option>
+                    <option value="Next month">Next month</option>
+                    <option value="Flexible">Flexible</option>
+                </select>
+            </div>
+
+            <!-- Best time to reach you -->
+            <div class="form-group">
+                <label for="bestTime">What's the best time to reach you? *</label>
+                <select id="bestTime" name="bestTime" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Early morning">Early morning (6am-9am)</option>
+                    <option value="Morning">Morning (9am-12pm)</option>
+                    <option value="Afternoon">Afternoon (12pm-5pm)</option>
+                    <option value="Evening">Evening (5pm-9pm)</option>
+                    <option value="Night">Night (9pm+)</option>
+                </select>
+            </div>
+
+            <!-- Preferred contact method -->
+            <div class="form-group">
+                <label for="contactMethod">How would you prefer we contact you? *</label>
+                <select id="contactMethod" name="contactMethod" required>
+                    <option value="">-- Select one --</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone">Phone</option>
+                    <option value="Text">Text</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                </select>
+            </div>
+
+            <!-- Time Zone -->
+            <div class="form-group">
+                <label for="timeZone">What's your time zone? *</label>
+                <select id="timeZone" name="timeZone" required>
+                    <option value="">-- Select one --</option>
+                    <option value="EST">EST (Eastern)</option>
+                    <option value="CST">CST (Central)</option>
+                    <option value="MST">MST (Mountain)</option>
+                    <option value="PST">PST (Pacific)</option>
+                    <option value="GMT">GMT</option>
+                    <option value="CET">CET (Central European)</option>
+                    <option value="AEST">AEST (Australian)</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- How did you hear about us -->
+            <div class="form-group">
+                <label for="howHeard">How did you hear about us?</label>
+                <select id="howHeard" name="howHeard">
+                    <option value="">-- Select one --</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Google">Google Search</option>
+                    <option value="Referral">Referral</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Additional notes -->
+            <div class="form-group">
+                <label for="notes">Additional notes</label>
+                <textarea 
+                    id="notes" 
+                    name="notes" 
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-group checkbox">
+                <input 
+                    type="checkbox" 
+                    id="consent" 
+                    name="consent" 
+                    required
+                >
+                <label for="consent">
+                    I confirm that the information I've provided is accurate. *
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" class="btn-submit">
+                <span class="btn-text">Submit</span>
+                <span class="btn-loading" style="display: none;">
+                    <span class="spinner"></span> Submitting...
+                </span>
+            </button>
+        </form>
+
+        <!-- Confidentiality Note -->
+        <div class="confidentiality-note">
+            <h3>Your Privacy Matters</h3>
+            <p>Your intake information is completely confidential. We keep your details private and secure. We do not:</p>
+            <ul>
+                <li>Share your information with third parties</li>
+                <li>Use your responses for marketing purposes</li>
+                <li>Sell or distribute your data</li>
+                <li>Share without your explicit consent</li>
+            </ul>
+            <p style="margin-top: 1rem; font-style: italic;">Your trust is everything to us.</p>
+        </div>
+
+        <!-- Privacy Note -->
+        <div class="privacy-note">
+            <p><small>Your privacy matters. We will never share your information.</small></p>
+        </div>
+    </div>
+
+    <!-- Load form handler script -->
+    <script src="/js/form-handler.js"></script>
+</body>
+</html>
