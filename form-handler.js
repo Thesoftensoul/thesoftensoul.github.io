@@ -32,6 +32,11 @@ const OFFERS = {
     label: 'The Soften Soul Journey',
     payLink: '',
     next: 'I read every Journey application myself. I will reach out within two business days so we can talk before you begin.'
+  },
+  holidayheart: {
+    label: 'Healing The Heart Through the Holidays',
+    payLink: '',
+    next: 'I read every application for this myself. I will reach out within two business days so we can talk about getting you support through the holidays.'
   }
 };
 
@@ -65,7 +70,7 @@ function isCrisis(data) {
 
 function initIntakeForm() {
   console.log('Form handler loaded');
-  
+
   const form = document.getElementById('intakeForm');
   if (!form) {
     console.error('Form not found');
@@ -82,7 +87,7 @@ function initIntakeForm() {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     // Check honeypot
     const honeypot = form.querySelector('[name="honeypot"]');
     if (honeypot && honeypot.value !== '') {
@@ -145,11 +150,11 @@ function toggleAreaCodeField() {
   const form = document.getElementById('intakeForm');
   const countryCodeInput = form.querySelector('#countryCode');
   const areaCodeContainer = document.getElementById('areaCodeContainer');
-  
+
   if (!areaCodeContainer) return;
-  
+
   const countryCode = countryCodeInput.value.trim();
-  
+
   // Show area code field only if country code is +1 or 1 (USA)
   if (countryCode === '+1' || countryCode === '1') {
     areaCodeContainer.style.display = 'block';
@@ -195,7 +200,7 @@ async function submit(formData, form) {
   } catch (error) {
     console.error('Error:', error);
     alert('There was a problem. Please email us at contact@thesoftensoul.com');
-    
+
     submitBtn.disabled = false;
     if (btnText) btnText.style.display = 'inline';
     if (btnLoading) btnLoading.style.display = 'none';
@@ -218,7 +223,7 @@ function showThankYou(data) {
   if (formHeader) formHeader.style.display = 'none';
   if (formCard) formCard.style.display = 'none';
   if (privacyNote) privacyNote.style.display = 'none';
-  
+
   // Show thank you
   if (thankYouMessage) {
     thankYouMessage.style.display = 'block';
